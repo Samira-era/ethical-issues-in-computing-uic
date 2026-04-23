@@ -6,10 +6,8 @@ the class, I will use the following combination of exercises:
 
 \vspace{0.7em}
 \noindent
-{\renewcommand{\arraystretch}{1.30}%
+\begingroup\renewcommand{\arraystretch}{1.30}
 \begin{tabular}{@{}p{0.72\linewidth}p{0.22\linewidth}@{}}
-\toprule
-& \textbf{Grade Proportion} \\
 \midrule
 \textbf{Out-of-class Exercises}             & \textbf{20\%} \\
 \quad Food in your feed                     & \\
@@ -33,19 +31,17 @@ the class, I will use the following combination of exercises:
 \midrule
 \textbf{Attendance, Participation, Civility} & \textbf{20\%} \\
 \bottomrule
-\end{tabular}}
-
-\vspace{0.9em}
+\end{tabular}\endgroup
 
 You can expect the following correspondence between your percentage grade in the
 course and your final letter grade, and the "equivalent" description from the registrar.
 
 \vspace{0.5em}
 \noindent
-{\renewcommand{\arraystretch}{1.30}%
+\begingroup\renewcommand{\arraystretch}{1.30}
 \begin{tabular}{|p{0.17\linewidth}|p{0.17\linewidth}|p{0.17\linewidth}|p{0.17\linewidth}|p{0.17\linewidth}|}
 \hline
 F              & D                & C        & B      & A         \\\hline
 59\% or below  & 60--69\%         & 70--79\% & 80--89\% & 90--100\% \\\hline
 Failure        & Poor but passing & Average  & Good   & Excellent \\\hline
-\end{tabular}}
+\end{tabular}\endgroup

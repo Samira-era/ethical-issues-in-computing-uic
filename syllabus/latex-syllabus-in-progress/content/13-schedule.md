@@ -1,5 +1,4 @@
-{
-% --- Schedule table: inside margins + taller rows + no underfull hbox warnings ---
+\begingroup
 \renewcommand{\arraystretch}{1.25}
 \setlength{\extrarowheight}{1.5pt}
 \setlength{\tabcolsep}{4pt}
@@ -45,4 +44,4 @@
 16 & 4/27--4/29 & Synthesis and conclusions & Book Report/Un-essay, Presentation, \& ``Actually Read'' (all 5/1) \\
 
 \end{longtable}
-}
+\endgroup
