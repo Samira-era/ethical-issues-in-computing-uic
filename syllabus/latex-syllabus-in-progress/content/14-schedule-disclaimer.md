@@ -1,0 +1,1 @@
+This syllabus is intended to give the student guidance on what may be covered during the semester and will be followed as closely as possible. However, the instructor might alter this syllabus as course needs arise. I will communicate such changes in advance through in-class announcements and in writing via Canvas and/or email.

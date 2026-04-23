@@ -1,0 +1,1 @@
+If your name does not match the name on my class roster, please let me know as soon as possible. My pronouns are he/him, and I welcome your pronouns if you would like to share them with me. For more information about pronouns, see: \url{https://www.mypronouns.org/what-and-why}.

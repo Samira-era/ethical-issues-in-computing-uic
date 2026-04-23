@@ -1,0 +1,1 @@
+Following campus policy, if you wish to observe religious holidays, you must notify me by the tenth day of the semester. If the religious holiday is observed on or before the tenth day of the semester, you must notify me at least five days before you will be absent. Please submit this form by email with the subject heading: "YOUR NAME: Requesting Religious Accommodation."

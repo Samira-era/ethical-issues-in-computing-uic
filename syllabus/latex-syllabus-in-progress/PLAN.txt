@@ -1,0 +1,143 @@
+REMAINING WORK — markdown-to-latex refactor
+===========================================
+
+## Status
+All 24 content markdown files are created in content/.
+The tex file and compile.sh have NOT been updated yet.
+
+## What still needs to be done
+
+### 1. Update compile.sh
+Replace current contents with:
+
+    #!/bin/bash
+    set -e
+    DIR="$(cd "$(dirname "$0")" && pwd)"
+    cd "$DIR"
+    mkdir -p generated
+    for md in content/*.md; do
+        name=$(basename "$md" .md)
+        pandoc -f markdown+raw_tex -t latex --wrap=none "$md" -o "generated/${name}.tex"
+    done
+    xelatex SP26_CS377_jxb.tex
+    xelatex SP26_CS377_jxb.tex  # second pass for cross-references
+
+
+### 2. Update SP26_CS377_jxb.tex
+
+A. Remove ALL \newcommand{blurb}{...} blocks (lines ~133-366).
+   Keep the short metadata \newcommand lines (collegeName, courseRubric, etc.) —
+   those are fine as-is since they're single-value fields.
+
+   Blocks to DELETE (each spans multiple lines):
+     \newcommand{\courseModalitySchedule}{...}    line 133
+     \newcommand{\catalogDescription}{...}        line 139
+     \newcommand{\growthMindsetStatement}{...}    line 145
+     \newcommand{\courseGoalsLearningOutcomes}{...} line 154
+     \newcommand{\courseMaterials}{...}           line 167
+     \newcommand{\requiredTechnology}{...}        line 178
+     \newcommand{\copyrightStatement}{...}        line 182
+     \newcommand{\gradingPolicy}{...}             line 186
+     \newcommand{\lateWorkPolicy}{...}            line 240
+     \newcommand{\attendanceParticipationPolicy}{...} line 246
+     \newcommand{\academicIntegrityPolicy}{...}   line 263
+     \newcommand{\emailExpectations}{...}         line 286
+     \newcommand{\scheduleDisclaimer}{...}        line 292
+     \newcommand{\disabilityAccommodation}{...}   line 296
+     \newcommand{\religiousAccommodation}{...}    line 303
+     \newcommand{\inclusiveCommunity}{...}        line 308
+     \newcommand{\namePronounUse}{...}            line 315
+     \newcommand{\communityAgreement}{...}        line 321
+     \newcommand{\contentNotices}{...}            line 338
+     \newcommand{\resourcesSection}{...}          line 342
+
+B. Replace each usage in the document body:
+
+   \catalogDescription
+     → \input{generated/0-catalog-description.tex}
+
+   (inline Dr. Bandy's description paragraph, ~lines 430-443)
+     → \input{generated/1-bandy-description.tex}
+
+   \courseGoalsLearningOutcomes
+     → \input{generated/2-course-goals.tex}
+
+   \courseMaterials
+     → \input{generated/3-course-materials.tex}
+
+   \growthMindsetStatement
+     → \input{generated/4-growth-mindset.tex}
+
+   \requiredTechnology
+     → \input{generated/5-required-technology.tex}
+
+   \copyrightStatement
+     → \input{generated/6-copyright.tex}
+
+   \gradingPolicy
+     → \input{generated/7-grading-policy.tex}
+
+   (inline Tests blurb, ~line 469-471)
+     → \input{generated/8-tests.tex}
+
+   \lateWorkPolicy
+     → \input{generated/9-late-work.tex}
+
+   \attendanceParticipationPolicy
+     → \input{generated/10-attendance.tex}
+
+   \academicIntegrityPolicy
+     → \input{generated/11-academic-integrity.tex}
+
+   \emailExpectations
+     → \input{generated/12-email.tex}
+
+   The full longtable block (lines ~494-541, from the opening brace
+   through \end{longtable} and closing brace):
+     → \input{generated/13-schedule.tex}
+
+   \scheduleDisclaimer
+     → \input{generated/14-schedule-disclaimer.tex}
+
+   \disabilityAccommodation
+     → \input{generated/15-disability-accommodation.tex}
+
+   \religiousAccommodation
+     → \input{generated/16-religious-accommodation.tex}
+
+   \inclusiveCommunity
+     → \input{generated/17-inclusive-community.tex}
+
+   \namePronounUse
+     → \input{generated/18-name-pronoun.tex}
+
+   \communityAgreement
+     → \input{generated/19-community-agreement.tex}
+
+   \contentNotices
+     → \input{generated/20-content-notices.tex}
+
+   (inline Student Wellbeing paragraphs, ~lines 581-628)
+     → \input{generated/21-student-wellbeing.tex}
+
+   \resourcesSection
+     → \input{generated/22-resources.tex}
+
+   (inline boilerplate resources paragraphs, ~lines 634-679)
+     → \input{generated/23-boilerplate-resources.tex}
+
+
+### 3. Add generated/ to root .gitignore
+Add this line to /Users/jackb/GitHub/.../ethical-issues-in-computing-fall-2025-uic/.gitignore:
+    syllabus/latex-syllabus-in-progress/generated/
+
+
+### 4. Delete SCHEDULE.txt
+It has been superseded by content/13-schedule.md
+
+
+### 5. Test
+Run: bash compile.sh
+Verify PDF looks correct. If the schedule table (from pandoc longtable) has
+layout issues, you may need to keep the longtable header/footer in the tex file
+and only \input the row data.
